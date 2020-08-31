@@ -35,6 +35,7 @@ jobs:
            SFPW: ${{ secrets.SFPW }}
          run: |
               cd bruh
+              ls
               mv settings.py.sample settings.py
                sed -i "TOKEN = os.environ.get("TELEGRAM_API_TOKEN", '')/c\TOKEN = os.environ.get("TELEGRAM_API_TOKEN", '$BOTKEY')" settings.py
                sed -i "ENABLED_USERS = os.environ.get("ENABLED_USERS", '')/c\ENABLED_USERS = os.environ.get("ENABLED_USERS", '$USERKEY')" settings.py
