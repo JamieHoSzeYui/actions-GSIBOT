@@ -4,7 +4,7 @@ name: Cloning
 on: [push] 
 
 env:
-  GIT_URL: https://github.com/JamieHoSzeYui/HenloBot
+  GIT_URL: https://github.com/vicalloy/telegram-shell-bot
   ENABLED_USERS: 12345678
   TOKEN: 123456:abfuvmsjfh7jfkgjb
 
