@@ -20,8 +20,8 @@ jobs:
        - name: Clone your code
          run: | 
               sudo -E apt-get -qq update
-              sudo -E apt-get -qq install expect python3-pip python3 pipenv
-              pip3 install pipenv
+              sudo -E apt-get -qq install expect python3-pip python3 
+              pip install pipenv
               git config --global user.name "JamieHoSzeYui"
               git config --global user.email "secrets.EMAIL"
               git clone $GIT_URL bruh
