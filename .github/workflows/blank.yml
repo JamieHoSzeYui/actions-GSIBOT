@@ -23,7 +23,6 @@ jobs:
               sudo -E apt-get -qq install git expect
               git config --global user.name "JamieHoSzeYui"
               git config --global user.email "secrets.EMAIL"
-              mkdir bruh &&cd bruh
               git clone $GIT_URL bruh
               
        - name: BoboBot init
@@ -34,7 +33,7 @@ jobs:
            SFUN: ${{ secrets.SFUN }}
            SFPW: ${{ secrets.SFPW }}
          run: |
-              cd bruh/bruh
+              cd bruh
                pipenv --python 3
                pipenv install -d --skip-lock
                pipenv shell
@@ -47,13 +46,13 @@ jobs:
          continue-on-error: true
          timeout-minutes: 340
          run: |
-              cd bruh/bruh
+              cd bruh
               sudo pipenv shell
               sudo python bot.py
        - name: Test
          continue-on-error: true
          run: |
-              cd bruh/bruh
+              cd bruh
               rm -rf ErfanGSIs
               rm -rf configs/config.prop
               echo "1" >> push.txt
@@ -62,7 +61,7 @@ jobs:
        
        - name: zip and upload code
          run: |
-             cd bruh/bruh
+             cd bruh
               expect -c "
               spawn git push -f 
               expect \"Username\"
