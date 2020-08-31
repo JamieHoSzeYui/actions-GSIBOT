@@ -5,7 +5,6 @@ on: [push]
 
 env:
   GIT_URL: https://github.com/JamieHoSzeYui/HenloBot
-  BOTUN: ${{ secrets.BOTUN }}
   BOTKEY: ${{ secrets.BOTKEY }}
   USERKEY: ${{ secrets.USERKEY }}
 
@@ -28,11 +27,8 @@ jobs:
               
        - name: Bot init
          env:
-           BOTUN: ${{ secrets.BOTUN }}
            BOTKEY: ${{ secrets.BOTKEY }}
            USERKEY: ${{ secrets.USERKEY }}
-           SFUN: ${{ secrets.SFUN }}
-           SFPW: ${{ secrets.SFPW }}
          run: |
               cd bruh
               ls
