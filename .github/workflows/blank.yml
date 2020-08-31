@@ -4,7 +4,7 @@ name: Cloning
 on: [push] 
 
 env:
-  GIT_URL: https://github.com/JamieHoSzeYui/OnlineVegaBot
+  GIT_URL: https://github.com/JamieHoSzeYui/HenloBot
   BOTUN: ${{ secrets.BOTUN }}
   BOTKEY: ${{ secrets.BOTKEY }}
   USERKEY: ${{ secrets.USERKEY }}
