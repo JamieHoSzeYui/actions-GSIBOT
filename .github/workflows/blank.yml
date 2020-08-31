@@ -27,7 +27,7 @@ jobs:
        - name: Bot init
          env:
            BOTKEY: ${{ secrets.BOTKEY }}
-           USERKEY: ${{ secrets.USERKEY }}
+           USERKEY: ${{ secrets.USERKEY }} 
          run: |
               cd bruh
               ls
