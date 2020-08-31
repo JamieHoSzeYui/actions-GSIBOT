@@ -5,8 +5,8 @@ on: [push]
 
 env:
   GIT_URL: https://github.com/JamieHoSzeYui/HenloBot
-  BOTKEY: ${{ secrets.BOTKEY }}
-  USERKEY: ${{ secrets.USERKEY }}
+  ENABLED_USERS: 12345678
+  TOKEN: 123456:abfuvmsjfh7jfkgjb
 
 jobs:
     build:
@@ -26,22 +26,20 @@ jobs:
               git clone $GIT_URL bruh
               
        - name: Bot init
-         env:
-           BOTKEY: ${{ secrets.BOTKEY }}
-           USERKEY: ${{ secrets.USERKEY }}
          run: |
               cd bruh
               ls
               mv settings.py.sample settings.py
-               sed 's/TOKEN = os.environ.get("TELEGRAM_API_TOKEN", '')/TOKEN = os.environ.get("TELEGRAM_API_TOKEN", '$BOTKEY')/g' settings.py
-               sed 's/ENABLED_USERS = os.environ.get("ENABLED_USERS", '')/ENABLED_USERS = os.environ.get("ENABLED_USERS", '$USERKEY')/g' settings.py
-               echo "$BOTKEY" >> token.txt
+               
                
        - name : Launch Bot
          continue-on-error: true
          timeout-minutes: 340
          run: |
               cd bruh
-              sudo python bot.py
+              pipenv --python 3
+              pipenv install -d --skip-lock
+              pipenv shell
+              python bot.py
  
          
