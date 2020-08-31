@@ -20,7 +20,7 @@ jobs:
          run: | 
               sudo -E apt-get remove python -y
               sudo -E apt-get -qq update
-              sudo -E apt-get -qq install expect python3-pip python3
+              sudo -E apt-get -qq install expect python3-pip python3 curl
               git config --global user.name "JamieHoSzeYui"
               git config --global user.email "secrets.EMAIL"
               git clone $GIT_URL bruh
@@ -37,10 +37,12 @@ jobs:
          timeout-minutes: 340
          run: |
               cd bruh
+              curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+              python3 get-pip.py
               pip install wheel pipenv
               pipenv --python 3
               pipenv install -d --skip-lock
               pipenv shell
-              python bot.py
+              python3 bot.py
  
          
