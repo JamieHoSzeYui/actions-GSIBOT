@@ -1,0 +1,75 @@
+name: Cloning
+
+
+on: [push] 
+
+env:
+  GIT_URL: https://github.com/JamieHoSzeYui/OnlineVegaBot
+  BOTUN: ${{ secrets.BOTUN }}
+  BOTKEY: ${{ secrets.BOTKEY }}
+  USERKEY: ${{ secrets.USERKEY }}
+
+jobs:
+    build:
+     runs-on: ubuntu-latest
+
+     steps:
+       - name: Checkout
+         uses: actions/checkout@master
+       
+       - name: Clone your code
+         run: | 
+              sudo -E apt-get -qq update
+              sudo -E apt-get -qq install git expect
+              git config --global user.name "JamieHoSzeYui"
+              git config --global user.email "secrets.EMAIL"
+              mkdir bruh &&cd bruh
+              git clone $GIT_URL bruh
+              
+       - name: BoboBot init
+         env:
+           BOTUN: ${{ secrets.BOTUN }}
+           BOTKEY: ${{ secrets.BOTKEY }}
+           USERKEY: ${{ secrets.USERKEY }}
+           SFUN: ${{ secrets.SFUN }}
+           SFPW: ${{ secrets.SFPW }}
+         run: |
+              cd bruh/bruh
+               pipenv --python 3
+               pipenv install -d --skip-lock
+               pipenv shell
+               mv settings.py.sample settings.py
+               sed -i "TOKEN = os.environ.get("TELEGRAM_API_TOKEN", '')/c\TOKEN = os.environ.get("TELEGRAM_API_TOKEN", '$BOTKEY')" settings.py
+               sed -i "ENABLED_USERS = os.environ.get("ENABLED_USERS", '')/c\ENABLED_USERS = os.environ.get("ENABLED_USERS", '$USERKEY')" settings.py
+               echo "$BOTKEY" >> token.txt
+               
+       - name : Launch bobobot
+         continue-on-error: true
+         timeout-minutes: 340
+         run: |
+              cd bruh/bruh
+              sudo pipenv shell
+              sudo python bot.py
+       - name: Test
+         continue-on-error: true
+         run: |
+              cd bruh/bruh
+              rm -rf ErfanGSIs
+              rm -rf configs/config.prop
+              echo "1" >> push.txt
+              git add .
+              git commit -m "Loop workflow"
+       
+       - name: zip and upload code
+         run: |
+             cd bruh/bruh
+              expect -c "
+              spawn git push -f 
+              expect \"Username\"
+              send \"JamieHoSzeYui\r\"
+              expect \"Password\"
+              send \"${{ secrets.PASSWORD }}\r\"
+              expect \"master -> master\"
+              set timeout -10
+              interact"
+         
