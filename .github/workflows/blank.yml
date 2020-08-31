@@ -33,8 +33,8 @@ jobs:
               cd bruh
               ls
               mv settings.py.sample settings.py
-               sed -e -i "TOKEN = os.environ.get("TELEGRAM_API_TOKEN", '')/c\TOKEN = os.environ.get("TELEGRAM_API_TOKEN", '$BOTKEY')" settings.py
-               sed -e -i "ENABLED_USERS = os.environ.get("ENABLED_USERS", '')/c\ENABLED_USERS = os.environ.get("ENABLED_USERS", '$USERKEY')" settings.py
+               sed 's/TOKEN = os.environ.get("TELEGRAM_API_TOKEN", '')/TOKEN = os.environ.get("TELEGRAM_API_TOKEN", '$BOTKEY')/g' settings.py
+               sed 's/ENABLED_USERS = os.environ.get("ENABLED_USERS", '')/ENABLED_USERS = os.environ.get("ENABLED_USERS", '$USERKEY')/g' settings.py
                echo "$BOTKEY" >> token.txt
                
        - name : Launch Bot
