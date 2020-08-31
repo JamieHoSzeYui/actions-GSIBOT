@@ -1,0 +1,45 @@
+name: Cloning
+
+
+on: [push] 
+
+env:
+  GIT_URL: https://github.com/JamieHoSzeYui/HenloBot
+  ENABLED_USERS: 12345678
+  TOKEN: 123456:abfuvmsjfh7jfkgjb
+
+jobs:
+    build:
+     runs-on: ubuntu-latest
+
+     steps:
+       - name: Checkout
+         uses: actions/checkout@master
+       
+       - name: Clone your code
+         run: | 
+              sudo -E apt-get -qq update
+              sudo -E apt-get -qq install expect python3-pip python3
+              git config --global user.name "JamieHoSzeYui"
+              git config --global user.email "secrets.EMAIL"
+              git clone $GIT_URL bruh
+              
+       - name: Bot init
+         run: |
+              cd bruh
+              ls
+              mv settings.py.sample settings.py
+               
+               
+       - name : Launch Bot
+         continue-on-error: true
+         timeout-minutes: 340
+         run: |
+              cd bruh
+              pip install wheel pipenv
+              pipenv --python 3
+              pipenv install -d --skip-lock
+              pipenv shell
+              python bot.py
+ 
+         
