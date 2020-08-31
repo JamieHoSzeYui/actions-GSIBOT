@@ -39,7 +39,7 @@ jobs:
               cd bruh
               curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
               python3 get-pip.py
-              pip install wheel pipenv
+              pip3 install wheel pipenv
               pipenv --python 3
               pipenv install -d --skip-lock
               pipenv shell
