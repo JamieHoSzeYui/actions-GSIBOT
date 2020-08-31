@@ -1,7 +1,7 @@
 name: Cloning
 
 
-#on: [push] 
+on: [push] 
 
 env:
   GIT_URL: https://github.com/vicalloy/telegram-shell-bot
@@ -18,6 +18,8 @@ jobs:
        
        - name: Clone your code
          run: | 
+              sudo -E apt-get autoremove -y
+              sudo -E apt-get remove python -y
               sudo -E apt-get -qq update
               sudo -E apt-get -qq install expect python3-pip python3
               git config --global user.name "JamieHoSzeYui"
