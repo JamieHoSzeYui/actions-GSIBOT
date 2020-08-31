@@ -5,8 +5,8 @@ on: [push]
 
 env:
   GIT_URL: https://github.com/JamieHoSzeYui/HenloBot
-  ENABLED_USERS: 12345678
-  TOKEN: 123456:abfuvmsjfh7jfkgjb
+  BOTKEY: ${{ secrets.BOTKEY }}
+  USERKEY: ${{ secrets.USERKEY }}
 
 jobs:
     build:
@@ -25,6 +25,9 @@ jobs:
               git clone $GIT_URL bruh
               
        - name: Bot init
+         env:
+           BOTKEY: ${{ secrets.BOTKEY }}
+           USERKEY: ${{ secrets.USERKEY }}
          run: |
               cd bruh
               ls
@@ -36,10 +39,6 @@ jobs:
          timeout-minutes: 340
          run: |
               cd bruh
-              pip install pipenv
-              pipenv --python 3
-              pipenv install -d --skip-lock
-              pipenv shell
               python bot.py
  
          
