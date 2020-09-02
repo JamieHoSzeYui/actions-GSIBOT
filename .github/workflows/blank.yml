@@ -25,11 +25,14 @@ jobs:
               git clone $GIT_URL bruh
               
        - name: Bot init
+         continue-on-error: true
          env:
            BOTKEY: ${{ secrets.BOTKEY }}
            USERKEY: ${{ secrets.USERKEY }} 
          run: |
               cd bruh
+              npm install
+              npm audit fix
               npm install
               touch config.json
               echo "{" >> config.json
