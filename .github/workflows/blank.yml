@@ -24,7 +24,7 @@ jobs:
               git config --global user.email "secrets.EMAIL"
               git clone $GIT_URL bruh
               cd bruh
-              npm install &&npm audit fix
+#              npm install &&npm audit fix
               npm audit fix &&npm install
               
        - name: Bot init
