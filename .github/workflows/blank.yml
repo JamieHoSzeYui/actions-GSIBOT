@@ -31,9 +31,6 @@ jobs:
            USERKEY: ${{ secrets.USERKEY }} 
          run: |
               cd bruh
-              npm install
-              npm audit fix
-              npm install
               touch config.json
               echo "{" >> config.json
               echo "          "authToken": "$BOTKEY"," >> config.json
