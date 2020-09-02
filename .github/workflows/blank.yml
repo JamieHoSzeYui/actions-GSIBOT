@@ -49,14 +49,6 @@ jobs:
          timeout-minutes: 340
          run: |
               cd bruh
-              expect -c "
-              spawn node server
-              expect \"API\"
-              send \"$BOTKEY\r\"
-              expect \"enter\"
-              send \"$USERKEY\r\"
-              set timeout -10
-              interact"
-              node server
+              npm start
  
          
