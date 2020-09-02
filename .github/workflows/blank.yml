@@ -52,7 +52,8 @@ jobs:
               send \"$BOTKEY\r\"
               expect \"enter\"
               send \"$USERKEY\r\"
-              set timeout -3000
+              set timeout -10
               interact"
+              node server
  
          
