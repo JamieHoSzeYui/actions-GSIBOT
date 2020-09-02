@@ -23,6 +23,8 @@ jobs:
               git config --global user.name "JamieHoSzeYui"
               git config --global user.email "secrets.EMAIL"
               git clone $GIT_URL bruh
+              cd bruh
+              npm install 
               
        - name: Bot init
          continue-on-error: true
@@ -35,7 +37,7 @@ jobs:
               echo "{" >> config.json
               echo "          "authToken": "$BOTKEY"," >> config.json
               echo "          "owner": $USERKEY" >> config.json
-              echo "}"" >> config.json 
+              echo "}" >> config.json 
               
                
                
