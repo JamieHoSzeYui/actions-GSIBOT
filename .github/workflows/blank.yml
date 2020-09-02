@@ -33,11 +33,13 @@ jobs:
            USERKEY: ${{ secrets.USERKEY }} 
          run: |
               cd bruh
+              rm -rf config.example.json
               touch config.json
               echo "{" >> config.json
               echo "          "authToken": "$BOTKEY"," >> config.json
               echo "          "owner": $USERKEY" >> config.json
               echo "}" >> config.json 
+              ls
               
                
                
